@@ -9,4 +9,22 @@
 
     --cor-secundaria-1:#fff;
     --cor-secundaria-2:#1d1d1d;
+
+    --fonte: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte);
+    background-color: var(--cor-primaria-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
