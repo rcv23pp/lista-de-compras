@@ -1,16 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lista de compras</title>
+    <title>Lista de Compras Inteligente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Minha lista de compras</h2>
-    <button onclick="logout()">Sair</button>
-    <ul id="lista"></ul>
-    <input type="text" id="item" placeholder="novo item">
-    <button onclick="adicionarItem()">Adicionar</button>
-    <script type="module" src="app.js"></script>
+    <div class="container">
+        <header class="header">
+            <div class="user-info">
+                <div class="avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div>
+                    <h1>Minha Lista de Compras</h1>
+                    <p class="subtitle">Organize suas compras de forma inteligente</p>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="logout()" aria-label="Sair da conta">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </header>
+
+        <main class="main-content">
+            <section class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-items">0</span>
+                        <span class="stat-label">Total de Itens</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="completed-items">0</span>
+                        <span class="stat-label">Comprados</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="pending-items">0</span>
+                        <span class="stat-label">Pendentes</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="add-item-section">
+                <div class="input-group">
+                    <input type="text" id="item" placeholder="O que você precisa comprar?" aria-label="Adicionar novo item à lista">
+                    <button class="btn-add" onclick="adicionarItem()" aria-label="Adicionar item">
+                        <i class="fas fa-plus"></i> Adicionar
+                    </button>
+                </div>
+                <p class="helper-text">Pressione Enter para adicionar rapidamente</p>
+            </section>
+
+            <section class="list-section">
+                <div class="list-header">
+                    <h2><i class="fas fa-list"></i> Sua Lista</h2>
+                    <div class="list-actions">
+                        <button class="btn-action" onclick="marcarTodos()" aria-label="Marcar todos os itens como comprados">
+                            <i class="fas fa-check-double"></i> Marcar Todos
+                        </button>
+                        <button class="btn-action" onclick="limparLista()" aria-label="Limpar lista completa">
+                            <i class="fas fa-trash-alt"></i> Limpar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="list-container">
+                    <ul id="lista" aria-label="Lista de compras">
+                        <!-- Itens serão inseridos aqui via JavaScript -->
+                        <li class="empty-list-message">
+                            <i class="fas fa-clipboard-list"></i>
+                            <p>Sua lista de compras está vazia</p>
+                            <p class="empty-list-sub">Adicione itens acima para começar</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Lista de Compras Inteligente &copy; <span id="current-year">2023</span> | Feito com <i class="fas fa-heart"></i> para organizar seu dia a dia</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Ano atual no footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Função para adicionar item pressionando Enter
+        document.getElementById('item').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                adicionarItem();
+            }
+        });
+    </script>
 </body>
 </html>
